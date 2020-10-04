@@ -15,6 +15,8 @@ class CreateTemenTable extends Migration
     {
         Schema::create('temen', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('hobi');
             $table->timestamps();
         });
     }
