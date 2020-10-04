@@ -36,7 +36,15 @@ class AppController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'hobi' => 'required',
+        ],
+        ['required' => ':attribute harus diisi']);
+
+        Teman::create($request->all());
+
+        return redirect()->route('index')->with('success', 'Data teman tersimpan');
     }
 
     /**
