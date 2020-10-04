@@ -7,30 +7,78 @@
   </head>
   <body>
 
-    <div class="container">
-      <div class="card mt-2">
-          <div class="card-body">
-            <table class="table table-striped table-hovered">
-              <tr>
-                <td>Nama</td>
-                <td>Hobi</td>
-                <td>
-                  <a class="btn btn-primary">Tambah</a>
-                </td>
-              </tr>
-              @foreach ($teman as $teman_row)
-                <tr>
-                  <td>{{ $teman_row->nama }}</td>
-                  <td>{{ $teman_row->hobi }}</td>
-                  <td>
-                    <a class="btn btn-warning">Ubah</a>
-                    <a class="btn btn-danger">Hapus</a>
-                  </td>
-                </tr>
-              @endforeach
-            </table>
+    <div class="container pt-5">
+
+      @if (count($errors))
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+              <li class="m-0 p-0">{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
+      @if ($msg = Session::get('success'))
+        <div class="alert alert-success">
+          {{ $msg }}
+        </div>
+      @endif
+
+      <div class="row">
+        
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">Form Teman</div>
+            <div class="card-body">
+              <form action="{{ route('store') }}" method="post">
+                @csrf
+
+                <div class="form-group">
+                  <label for="">Nama</label>
+                  <input type="text" class="form-control" name="nama">
+                </div>
+
+                <div class="form-group">
+                  <label for="">Hobi</label>
+                  <input type="text" class="form-control" name="hobi">
+                </div>
+
+                <button class="btn btn-primary">Simpan</button>
+
+              </form>
+            </div>
           </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">Data Teman</div>
+            <div class="card-body">
+              <table class="table table-striped table-hovered">
+                <tr>
+                  <td>Nama</td>
+                  <td>Hobi</td>
+                  <td>Aksi</td>
+                </tr>
+                @foreach ($teman as $teman_row)
+                  <tr>
+                    <td>{{ $teman_row->nama }}</td>
+                    <td>{{ $teman_row->hobi }}</td>
+                    <td>
+                      <a class="btn btn-warning">Ubah</a>
+                      <a class="btn btn-danger">Hapus</a>
+                    </td>
+                  </tr>
+                @endforeach
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+
     </div>
 
     <script src="{{ url('assets/jquery.min.js') }}"></script>
