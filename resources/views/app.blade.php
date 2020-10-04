@@ -18,14 +18,16 @@
                   <a class="btn btn-primary">Tambah</a>
                 </td>
               </tr>
-              <tr>
-                <td>Surya</td>
-                <td>Memancing</td>
-                <td>
-                  <a class="btn btn-warning">Ubah</a>
-                  <a class="btn btn-danger">Hapus</a>
-                </td>
-              </tr>
+              @foreach ($teman as $teman_row)
+                <tr>
+                  <td>{{ $teman_row->nama }}</td>
+                  <td>{{ $teman_row->hobi }}</td>
+                  <td>
+                    <a class="btn btn-warning">Ubah</a>
+                    <a class="btn btn-danger">Hapus</a>
+                  </td>
+                </tr>
+              @endforeach
             </table>
           </div>
       </div>
