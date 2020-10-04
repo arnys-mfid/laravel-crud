@@ -10,4 +10,9 @@ class HobiController extends Controller
     {
         return view ('tambah');
     }
+
+    public function ubahHobi()
+    {
+        return view ('ubah');
+    }
 }

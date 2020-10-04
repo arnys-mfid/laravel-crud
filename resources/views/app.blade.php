@@ -23,7 +23,7 @@
                 <td>Surya</td>
                 <td>Memancing</td>
                 <td>
-                  <button class="btn btn-warning">Ubah</button>
+                  <button class="btn btn-warning"><a href="/ubah">Ubah</a></button>
                   <button class="btn btn-danger">Hapus</button>
                 </td>
               </tr>
