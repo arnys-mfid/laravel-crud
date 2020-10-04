@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'AppController@index');
 Route::get('/tambah', 'HobiController@tambahHobi');
+Route::get('/update', 'HobiController@updateHobi');
