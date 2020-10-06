@@ -31,7 +31,7 @@
           <div class="card">
             <div class="card-header">Form Teman</div>
             <div class="card-body">
-              <form action="{{ route('store') }}" method="post">
+              <form action="{{ route('teman.store') }}" method="post">
                 @csrf
 
                 <div class="form-group">
@@ -66,8 +66,11 @@
                     <td>{{ $teman_row->nama }}</td>
                     <td>{{ $teman_row->hobi }}</td>
                     <td>
-                      <a class="btn btn-warning">Ubah</a>
-                      <a class="btn btn-danger">Hapus</a>
+                      <form action="{{ route('teman.destroy', $teman_row->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                          <button class="btn btn-danger" type="submit" >Hapus</button>
+                      </form>
                     </td>
                   </tr>
                 @endforeach
@@ -75,10 +78,7 @@
             </div>
           </div>
         </div>
-
       </div>
-
-
     </div>
 
     <script src="{{ url('assets/jquery.min.js') }}"></script>
