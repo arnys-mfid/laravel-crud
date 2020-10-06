@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/teman', 'AppController');
+Route::resource('/teman', 'AppController'); 

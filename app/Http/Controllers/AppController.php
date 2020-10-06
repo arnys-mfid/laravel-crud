@@ -66,7 +66,8 @@ class AppController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['teman'] = Teman::find($id);
+        return view('edit', $data);
     }
 
     /**
@@ -78,7 +79,17 @@ class AppController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data['teman'] = Teman::find($id);
+
+        $request->validate([
+            'nama' => 'required',
+            'hobi' => 'required',
+        ],
+        ['required' => ':attribute harus diisi']);
+
+        $data['teman']->update($request->all());
+
+        return redirect()->route('teman.index')->with('success', 'Data teman terubah');
     }
 
     /**
