@@ -44,7 +44,7 @@ class AppController extends Controller
 
         Teman::create($request->all());
 
-        return redirect()->route('index')->with('success', 'Data teman tersimpan');
+        return redirect()->route('teman.index')->with('success', 'Data teman tersimpan');
     }
 
     /**
@@ -53,7 +53,7 @@ class AppController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
@@ -66,7 +66,8 @@ class AppController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['teman'] = Teman::find($id);
+        return view('edit', $data);
     }
 
     /**
@@ -78,7 +79,17 @@ class AppController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data['teman'] = Teman::find($id);
+
+        $request->validate([
+            'nama' => 'required',
+            'hobi' => 'required',
+        ],
+        ['required' => ':attribute harus diisi']);
+
+        $data['teman']->update($request->all());
+
+        return redirect()->route('teman.index')->with('success', 'Data teman terubah');
     }
 
     /**
@@ -89,6 +100,9 @@ class AppController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = Teman::find($id);
+        $users->delete();
+
+        return redirect()->route('teman.index')->with('success', 'Data teman dihapus');
     }
 }

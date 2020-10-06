@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{ url('assets/bootstrap.min.css') }}">
   </head>
   <body>
-
     <div class="container pt-5">
 
       @if (count($errors))
@@ -26,26 +25,22 @@
       @endif
 
       <div class="row">
-        
         <div class="col-md-4">
           <div class="card">
             <div class="card-header">Form Teman</div>
             <div class="card-body">
-              <form action="{{ route('store') }}" method="post">
+              <form action="{{ route('teman.store') }}" method="post">
                 @csrf
 
                 <div class="form-group">
                   <label for="">Nama</label>
-                  <input type="text" class="form-control" name="nama">
+                  <input type="text" class="form-control" name="nama" value="{{ old('nama') }}">
                 </div>
-
                 <div class="form-group">
                   <label for="">Hobi</label>
-                  <input type="text" class="form-control" name="hobi">
+                  <input type="text" class="form-control" name="hobi" value="{{ old('hobi') }}">
                 </div>
-
                 <button class="btn btn-primary">Simpan</button>
-
               </form>
             </div>
           </div>
@@ -61,27 +56,34 @@
                   <td>Hobi</td>
                   <td>Aksi</td>
                 </tr>
+
                 @foreach ($teman as $teman_row)
                   <tr>
                     <td>{{ $teman_row->nama }}</td>
                     <td>{{ $teman_row->hobi }}</td>
                     <td>
-                      <a class="btn btn-warning">Ubah</a>
-                      <a class="btn btn-danger">Hapus</a>
+                      <form action="{{ route('teman.destroy', $teman_row->id) }}" method="post">
+                        <a href="{{ route('teman.edit', $teman_row->id) }}">
+                          <button type="button" class="btn btn-warning"> Ubah </button>
+                        </a>
+						
+                        @csrf
+                        @method('DELETE')
+                          <button class="btn btn-danger" type="submit" >Hapus</button>
+                      </form>
                     </td>
                   </tr>
                 @endforeach
+
               </table>
             </div>
           </div>
         </div>
-
       </div>
-
-
     </div>
 
     <script src="{{ url('assets/jquery.min.js') }}"></script>
     <script src="{{ url('assets/bootstrap.min.js') }}"></script>
+
   </body>
 </html>
