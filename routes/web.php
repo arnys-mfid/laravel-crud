@@ -1,5 +1,6 @@
 <?php
 
+use App\Teman;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/teman', 'AppController'); 
+Route::get('/', function() {
+    $data['teman'] = Teman::all();
+    return view('app', $data);
+});
+
+Route::resource('teman', 'AppController');
